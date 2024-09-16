@@ -1,6 +1,7 @@
-import { Sidebar } from '@/components/ui/sidebar';
-import Link from 'next/link';
+import SchoolView from "@/views/Authentication/School";
 
 export default function Home() {
-  return <main></main>;
+  return <main>
+    <SchoolView />
+  </main>;
 }
