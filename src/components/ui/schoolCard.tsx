@@ -70,7 +70,8 @@ export default schools;
 
 export const SchoolCard = () => {
   return (
-    <div className='grid grid-cols-2 gap-4'>
+    // Use grid-cols-1 for small screens and grid-cols-2 for medium and larger screens
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
       {schools.map((school, index) => (
         <Card key={index}>
           <Link href='/school/student'>

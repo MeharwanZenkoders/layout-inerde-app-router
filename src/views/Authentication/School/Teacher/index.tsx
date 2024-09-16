@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -17,13 +17,12 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-import { ArrowRight, CircleUserRound, Search } from 'lucide-react';
+import { ArrowRight, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-// import { useRouter, useSearchParams } from 'next/navigation';
 
 const Teacher = () => {
-  const [active, setActive] = useState('teacher');
+
   const students = [
     {
       name: 'John Doe',
@@ -76,28 +75,13 @@ const Teacher = () => {
     },
   ];
 
-  // const [searched, setSearchhed] = useState('');
-
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-  //   setSearchhed(e.target.value.toLowerCase());
-  // }\
-
-  // const router = useRouter();
-
-  // const handleSearch = () => {
-  //   const queryParam = useSearchParams();
-  //   const searchParam = queryParam.get('q');
-  // };
-
   return (
-    <div className='container'>
+    <div className='container mx-auto px-4'>
       {/* Back Button */}
-      <div className='flex items-start justify-start font-medium mt-1'>
-        <Link href='/school'>
+      <div className='flex items-start justify-start font-medium mt-4'>
+        <Link href='#'>
           <ArrowRight className='rotate-180' />
         </Link>
-
         <span className='px-2'> Back</span>
       </div>
 
@@ -127,16 +111,13 @@ const Teacher = () => {
       </div>
 
       {/* Search Bar */}
-      <div className='flex grid-cols-2 items-start gap-4 mt-3'>
-        <div className='bg-gray-100 flex items-center w-full rounded-lg'>
-          {/* <Search className='text-gray-100 w-5 h-5 ml-2' /> */}
+      <div className='grid sm:grid-cols-3 grid-rows-2 gap-4 mt-6'>
+        <div className='flex items-center sm:col-span-2 bg-gray-100 rounded-lg'>
           <input
             type='text'
             name='search'
             placeholder='Search'
-            className='px-2 bg-gray-100 w-full rounded-lg'
-            value=''
-            onChange={e => console.log(e.target.value)}
+            className='w-full px-2 bg-gray-100 rounded-lg'
             required
           />
         </div>
@@ -146,46 +127,45 @@ const Teacher = () => {
           <input
             type='text'
             name='approved'
-            placeholder='APPROVED'
-            className='bg-gray-100 px-2 rounded-lg'
+            placeholder='Approved'
+            className='bg-gray-100 px-2 rounded-lg w-full'
             required
           />
         </div>
       </div>
 
-      {/*  */}
-      <div className='flex flex-col gap-4 mt-3  border border-gray-100 rounded-lg shadow-md pt-5 pl-7 w-full '>
-        {/* student teacher navigation */}
-        <div className='flex grid-cols-2 items-start justify-between mb-0'>
-          <div className='flex grid-cols-2 gap-3 items-start pl-8 '>
-            <Link
-              href='/school/student'
-              className={`px-5 hover:text-green-700 ${active === 'student' ? ' font-medium border-b-2 border-green-700' : 'text-sm'}`}
-              onClick={() => setActive('student')}
-            >
-              Student
-            </Link>
+      {/* Student/Teacher Navigation */}
 
-            <Link
-              href='#'
-              className={`px-5 hover:text-green-700 ${active === 'teacher' ? ' font-medium border-b-4 border-green-700' : 'text-sm'}`}
-              onClick={() => setActive('teacher')}
-            >
-              Teacher
-            </Link>
-          </div>
+      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 mb-4'>
+        <div className='flex space-x-4'>
+          <Link
+            href='/school/student'
+            className='px-5 hover:text-green-700 font-medium'
+          >
+            Student
+          </Link>
 
-          <div className='flex flex-col items-start pr-4'>
-            <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
-              Add Teacher
-            </Button>
-          </div>
+          <Link
+            href='#'
+            className='px-5 hover:text-green-700 font-medium border-b-2 border-green-700'
+          >
+            Teacher
+          </Link>
         </div>
 
-        <Table className='mt-0'>
+        <div className='mt-4 sm:mt-0 sm:ml-auto'>
+          <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
+            Add Teacher
+          </Button>
+        </div>
+      </div>
+
+      {/* Students Table */}
+      <div className='w-full border border-gray-100 rounded-lg shadow-md p-5'>
+        <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className='w-[100px] '>NAME</TableHead>
+              <TableHead className='w-[100px]'>NAME</TableHead>
               <TableHead>EMAIL</TableHead>
               <TableHead>GENDER</TableHead>
               <TableHead>GRADE</TableHead>
@@ -194,15 +174,11 @@ const Teacher = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {students.map(std => (
+            {students.map((std) => (
               <TableRow key={std.name}>
                 <TableCell>
                   <div className='flex items-center space-x-2'>
-                    <CircleUserRound
-                      height={20}
-                      width={20}
-                      className='rounded-full'
-                    />
+                    <CircleUserRound height={20} width={20} className='rounded-full' />
                     <span className='px-4'>{std.name}</span>
                   </div>
                 </TableCell>
@@ -225,3 +201,24 @@ const Teacher = () => {
 };
 
 export default Teacher;
+
+
+
+
+
+
+// const [searched, setSearchhed] = useState('');
+
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  //   setSearchhed(e.target.value.toLowerCase());
+  // }\
+
+  // const router = useRouter();
+
+  // const handleSearch = () => {
+  //   const queryParam = useSearchParams();
+  //   const searchParam = queryParam.get('q');
+  // };
+
+  // import { useRouter, useSearchParams } from 'next/navigation';

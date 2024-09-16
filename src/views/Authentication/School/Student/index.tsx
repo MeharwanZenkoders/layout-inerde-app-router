@@ -22,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const Student = () => {
-  const [active, setActive] = useState('student');
+
   const students = [
     {
       name: 'John Doe',
@@ -112,7 +112,7 @@ const Student = () => {
 
       {/* Search Bar */}
       <div className='grid sm:grid-cols-3 grid-rows-2 gap-4 mt-6'>
-        <div className='flex items-center sm:col-span-2  bg-gray-100 rounded-lg'>
+        <div className='flex items-center sm:col-span-2 bg-gray-100 rounded-lg'>
           <input
             type='text'
             name='search'
@@ -123,7 +123,7 @@ const Student = () => {
         </div>
 
         {/* Approved Input Field */}
-        <div className='bg-gray-100  rounded-lg'>
+        <div className='bg-gray-100 rounded-lg'>
           <input
             type='text'
             name='approved'
@@ -135,26 +135,24 @@ const Student = () => {
       </div>
 
       {/* Student/Teacher Navigation */}
-      <div className='flex flex-wrap items-center justify-between mt-8 mb-4'>
+      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 mb-4'>
         <div className='flex space-x-4'>
           <Link
             href='#'
-            className={`px-5 hover:text-green-700 ${active === 'student' ? ' font-medium border-b-2 border-green-700' : 'text-sm'}`}
-            onClick={() => setActive('student')}
+            className='px-5 hover:text-green-700 font-medium  border-b-2 border-green-700'
           >
             Student
           </Link>
 
           <Link
             href='/school/teacher'
-            className={`px-5 hover:text-green-700 ${active === 'teacher' ? ' font-medium border-b-2 border-green-700' : 'text-sm'}`}
-            onClick={() => setActive('teacher')}
+            className='px-5 hover:text-green-700 font-medium'
           >
             Teacher
           </Link>
         </div>
 
-        <div className='ml-auto'>
+        <div className='mt-4 sm:mt-0 sm:ml-auto'>
           <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
             Add Student
           </Button>
@@ -175,15 +173,11 @@ const Student = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {students.map(std => (
+            {students.map((std) => (
               <TableRow key={std.name}>
                 <TableCell>
                   <div className='flex items-center space-x-2'>
-                    <CircleUserRound
-                      height={20}
-                      width={20}
-                      className='rounded-full'
-                    />
+                    <CircleUserRound height={20} width={20} className='rounded-full' />
                     <span className='px-4'>{std.name}</span>
                   </div>
                 </TableCell>
@@ -206,3 +200,24 @@ const Student = () => {
 };
 
 export default Student;
+
+
+
+
+
+
+// const [searched, setSearchhed] = useState('');
+
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  //   setSearchhed(e.target.value.toLowerCase());
+  // }\
+
+  // const router = useRouter();
+
+  // const handleSearch = () => {
+  //   const queryParam = useSearchParams();
+  //   const searchParam = queryParam.get('q');
+  // };
+
+  // import { useRouter, useSearchParams } from 'next/navigation';
