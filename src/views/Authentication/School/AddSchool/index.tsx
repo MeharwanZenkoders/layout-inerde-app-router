@@ -10,7 +10,7 @@ const AddSchool = () => {
           <Link href='/school'>
             <ArrowRight className='rotate-180' />
           </Link>
-          <span className='px-2'> Back</span>
+          <span className='px-2'>Back</span>
         </div>
         <div className='flex items-start justify-items-start mt-5'>
           <h1 className='text-xl font-bold'>Add School</h1>
