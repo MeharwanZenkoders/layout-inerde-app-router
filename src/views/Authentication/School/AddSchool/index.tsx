@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useFormik, FormikProvider, Form, Field } from 'formik';
 import { ArrowRight, ChevronDown, Flag } from 'lucide-react';
 import Link from 'next/link';
@@ -41,7 +41,7 @@ const AddSchool = () => {
           .email('Invalid email format')
           .matches(
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|pk)$/,
-            'Email must end with .com or .pk'
+            'Email must end with .com or .pk',
           )
           .required('Email is required'),
         phone: Yup.string().required('Phone number is required'),

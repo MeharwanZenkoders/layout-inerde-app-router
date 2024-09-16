@@ -1,7 +1,9 @@
-import SchoolView from "@/views/Authentication/School";
+import SchoolView from '@/views/Authentication/School';
 
 export default function Home() {
-  return <main>
-    <SchoolView />
-  </main>;
+  return (
+    <main>
+      <SchoolView />
+    </main>
+  );
 }

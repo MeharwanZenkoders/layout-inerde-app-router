@@ -22,7 +22,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const Student = () => {
-
   const students = [
     {
       name: 'John Doe',
@@ -173,11 +172,15 @@ const Student = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {students.map((std) => (
+            {students.map(std => (
               <TableRow key={std.name}>
                 <TableCell>
                   <div className='flex items-center space-x-2'>
-                    <CircleUserRound height={20} width={20} className='rounded-full' />
+                    <CircleUserRound
+                      height={20}
+                      width={20}
+                      className='rounded-full'
+                    />
                     <span className='px-4'>{std.name}</span>
                   </div>
                 </TableCell>
@@ -201,23 +204,18 @@ const Student = () => {
 
 export default Student;
 
-
-
-
-
-
 // const [searched, setSearchhed] = useState('');
 
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+// const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-  //   setSearchhed(e.target.value.toLowerCase());
-  // }\
+//   setSearchhed(e.target.value.toLowerCase());
+// }\
 
-  // const router = useRouter();
+// const router = useRouter();
 
-  // const handleSearch = () => {
-  //   const queryParam = useSearchParams();
-  //   const searchParam = queryParam.get('q');
-  // };
+// const handleSearch = () => {
+//   const queryParam = useSearchParams();
+//   const searchParam = queryParam.get('q');
+// };
 
-  // import { useRouter, useSearchParams } from 'next/navigation';
+// import { useRouter, useSearchParams } from 'next/navigation';

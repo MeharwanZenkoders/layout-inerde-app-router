@@ -4,9 +4,7 @@ import { SchoolCard } from '@/components/ui/schoolCard';
 import Link from 'next/link';
 import React from 'react';
 
-
 const SchoolView = () => {
-
   return (
     <div className='container'>
       <div className='flex grid-cols-2 justify-between mt-3'>

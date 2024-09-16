@@ -26,7 +26,8 @@ export function Sidebar() {
   const [active, setActive] = useState('');
 
   return (
-    <aside className={`${collapse ? 'w-max' : 'w-64'} " flex h-screen flex-col overflow-y-auto border-r bg-white px-5 py-3 sticky left-0 top-0"`}
+    <aside
+      className={`${collapse ? 'w-max' : 'w-64'} " flex h-screen flex-col overflow-y-auto border-r bg-white px-5 py-3 sticky left-0 top-0"`}
     >
       <div className='flex items-center justify-between'>
         <Link href='/'>

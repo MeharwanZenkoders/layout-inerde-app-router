@@ -187,7 +187,9 @@ const Profile: FC = () => {
               <hr className='text-gray-100 font-medium' />
               <div className='flex justify-between'>
                 <span className='text-gray-900'>Account Number</span>
-                <span className='text-gray-500 flex items-end'>1234 1234 1234 1234</span>
+                <span className='text-gray-500 flex items-end'>
+                  1234 1234 1234 1234
+                </span>
               </div>
             </div>
           </div>
