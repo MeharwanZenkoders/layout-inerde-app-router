@@ -128,7 +128,6 @@ const Student = () => {
             type='text'
             name='approved'
             placeholder='Approved'
-            x
             className='bg-gray-100 px-2 rounded-lg w-full'
             required
           />
