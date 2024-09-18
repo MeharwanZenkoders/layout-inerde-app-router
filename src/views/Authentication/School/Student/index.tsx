@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -17,62 +17,46 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-import { ArrowRight, CircleUserRound, Search } from 'lucide-react';
+import { ArrowRight, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation'; // Import this to read query params
+
+interface Student {
+  id: number;
+  name: string;
+  schoolName: string;
+  email: string;
+  gender: string;
+  grade: string;
+  program: string;
+}
 
 const Student = () => {
-  const students = [
-    {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      gender: 'Male',
-      grade: 'A',
-      program: 'Computer Science',
-    },
-    {
-      name: 'Jane Smith',
-      email: 'jane.smith@example.com',
-      gender: 'Female',
-      grade: 'B',
-      program: 'Business Administration',
-    },
-    {
-      name: 'Alice Johnson',
-      email: 'alice.johnson@example.com',
-      gender: 'Female',
-      grade: 'A',
-      program: 'Psychology',
-    },
-    {
-      name: 'Robert Brown',
-      email: 'robert.brown@example.com',
-      gender: 'Male',
-      grade: 'C',
-      program: 'Mechanical Engineering',
-    },
-    {
-      name: 'Emily Davis',
-      email: 'emily.davis@example.com',
-      gender: 'Female',
-      grade: 'B',
-      program: 'Marketing',
-    },
-    {
-      name: 'Michael Wilson',
-      email: 'michael.wilson@example.com',
-      gender: 'Male',
-      grade: 'A',
-      program: 'Data Science',
-    },
-    {
-      name: 'Sophia Martinez',
-      email: 'sophia.martinez@example.com',
-      gender: 'Female',
-      grade: 'A',
-      program: 'Graphic Design',
-    },
-  ];
+  const [allStudents, setAllStudents] = useState<Student[]>([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const searchParams = useSearchParams(); // Access the query params
+
+  useEffect(() => {
+    const storedStudents = localStorage.getItem('student');
+    if (storedStudents) {
+      const parsedStudents = JSON.parse(storedStudents);
+      setAllStudents(parsedStudents);
+      console.log("parsed student",parsedStudents)
+    }
+  }, []);
+
+  // Get the schoolName from the query parameter
+  const schoolName = searchParams.get('schoolName');
+
+  console.log("school Name ",schoolName)
+
+  // Filter students by the schoolName and search term
+  const filteredStudents = allStudents.filter(
+    (student) =>
+      student.schoolName === schoolName &&
+      student.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className='container mx-auto px-4'>
@@ -91,7 +75,7 @@ const Student = () => {
             <BreadcrumbItem>
               <BreadcrumbLink
                 href='/school'
-                className=' hover:text-green-700 font-medium'
+                className='hover:text-green-700 font-medium'
               >
                 School
               </BreadcrumbLink>
@@ -115,19 +99,10 @@ const Student = () => {
           <input
             type='text'
             name='search'
-            placeholder='Search'
+            placeholder='Search by name'
             className='w-full px-2 bg-gray-100 rounded-lg'
-            required
-          />
-        </div>
-
-        {/* Approved Input Field */}
-        <div className='bg-gray-100 rounded-lg'>
-          <input
-            type='text'
-            name='approved'
-            placeholder='Approved'
-            className='bg-gray-100 px-2 rounded-lg w-full'
+            value={searchTerm} // Controlled input
+            onChange={(e) => setSearchTerm(e.target.value)} // Update search term
             required
           />
         </div>
@@ -152,9 +127,11 @@ const Student = () => {
         </div>
 
         <div className='mt-4 sm:mt-0 sm:ml-auto'>
-          <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
-            Add Student
-          </Button>
+          <Link href="/school/student/addStudent">
+            <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
+              Add Student
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -172,8 +149,8 @@ const Student = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {students.map(std => (
-              <TableRow key={std.name}>
+            {filteredStudents.map((std) => (
+              <TableRow key={std.id}>
                 <TableCell>
                   <div className='flex items-center space-x-2'>
                     <CircleUserRound
@@ -203,19 +180,3 @@ const Student = () => {
 };
 
 export default Student;
-
-// const [searched, setSearchhed] = useState('');
-
-// const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-//   setSearchhed(e.target.value.toLowerCase());
-// }\
-
-// const router = useRouter();
-
-// const handleSearch = () => {
-//   const queryParam = useSearchParams();
-//   const searchParam = queryParam.get('q');
-// };
-
-// import { useRouter, useSearchParams } from 'next/navigation';

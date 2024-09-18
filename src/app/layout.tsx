@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className='flex items-center gap-2 h-screen'>
+      <body className='flex items-center gap-2 h-screen font-PlusJakartaSans'>
         <div className=' hidden md:block'>
           <Sidebar />
         </div>
