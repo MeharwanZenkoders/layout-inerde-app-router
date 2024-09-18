@@ -153,10 +153,10 @@ const Teacher = () => {
         </div>
 
         <div className='mt-4 sm:mt-0 sm:ml-auto'>
-          <Link href = "/school/teacher/addTeacher">
-          <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
-            Add Teacher
-          </Button>
+          <Link href='/school/teacher/addTeacher'>
+            <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
+              Add Teacher
+            </Button>
           </Link>
         </div>
       </div>

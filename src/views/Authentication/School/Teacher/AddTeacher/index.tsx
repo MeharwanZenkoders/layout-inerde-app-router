@@ -1,11 +1,10 @@
 'use client';
-import React from 'react'
+import React from 'react';
 import { useFormik, FormikProvider, Form, Field } from 'formik';
 import { ArrowRight, ChevronDown, Flag } from 'lucide-react';
 import Link from 'next/link';
 import * as Yup from 'yup';
-import { Persist } from "formik-persist";
-
+import { Persist } from 'formik-persist';
 
 interface FormValues {
   teachers: {
@@ -21,7 +20,6 @@ interface FormValues {
 }
 
 const AddTeacherView = () => {
-
   const formik = useFormik({
     initialValues: {
       teachers: [
@@ -71,7 +69,7 @@ const AddTeacherView = () => {
                 <ArrowRight className='rotate-180' />
               </Link>
               <span className='px-2'>Back</span>
-            </div> 
+            </div>
             <div className='flex items-start justify-items-start mt-5'>
               <h1 className='text-xl font-bold'>Add Teacher</h1>
             </div>
@@ -79,9 +77,8 @@ const AddTeacherView = () => {
 
           <div className='flex grid-cols-3 justify-between mt-4'>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 w-full'>
-
-               {/* First Name */}
-               <div className='w-full'>
+              {/* First Name */}
+              <div className='w-full'>
                 <label className='block text-sm font-medium text-gray-700'>
                   First Name<span className='text-red-500'>*</span>
                 </label>
@@ -121,8 +118,6 @@ const AddTeacherView = () => {
                   className='mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md p-2 text-gray-900'
                 />
               </div>
-
-             
 
               {/* Email */}
               <div className='w-full'>

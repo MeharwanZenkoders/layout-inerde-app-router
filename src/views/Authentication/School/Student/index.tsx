@@ -42,20 +42,20 @@ const Student = () => {
     if (storedStudents) {
       const parsedStudents = JSON.parse(storedStudents);
       setAllStudents(parsedStudents);
-      console.log("parsed student",parsedStudents)
+      console.log('parsed student', parsedStudents);
     }
   }, []);
 
   // Get the schoolName from the query parameter
   const schoolName = searchParams.get('schoolName');
 
-  console.log("school Name ",schoolName)
+  console.log('school Name ', schoolName);
 
   // Filter students by the schoolName and search term
   const filteredStudents = allStudents.filter(
-    (student) =>
+    student =>
       student.schoolName === schoolName &&
-      student.name.toLowerCase().includes(searchTerm.toLowerCase())
+      student.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -102,7 +102,7 @@ const Student = () => {
             placeholder='Search by name'
             className='w-full px-2 bg-gray-100 rounded-lg'
             value={searchTerm} // Controlled input
-            onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+            onChange={e => setSearchTerm(e.target.value)} // Update search term
             required
           />
         </div>
@@ -127,7 +127,7 @@ const Student = () => {
         </div>
 
         <div className='mt-4 sm:mt-0 sm:ml-auto'>
-          <Link href="/school/student/addStudent">
+          <Link href='/school/student/addStudent'>
             <Button className='bg-green-900 border rounded-lg shadow-md text-slate-200'>
               Add Student
             </Button>
@@ -149,7 +149,7 @@ const Student = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredStudents.map((std) => (
+            {filteredStudents.map(std => (
               <TableRow key={std.id}>
                 <TableCell>
                   <div className='flex items-center space-x-2'>

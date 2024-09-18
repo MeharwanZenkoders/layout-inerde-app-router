@@ -12,7 +12,10 @@ const schoolSchema = Yup.object().shape({
   lastName: Yup.string().required('Last Name is required'),
   email: Yup.string()
     .email('Invalid email format')
-    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|pk)$/, 'Email must end with .com or .pk')
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|pk)$/,
+      'Email must end with .com or .pk',
+    )
     .required('Email is required'),
   phone: Yup.string().required('Phone number is required'),
   address: Yup.string().required('Address is required'),
@@ -43,60 +46,60 @@ const generateId = (existing: number[]): number => {
 const AddSchool = () => {
   const [newSchool, setNewSchool] = useState<Schools[]>([
     {
-      "id": 1,
-      "schoolName": "Greenfield High School",
-      "firstName": "Greenfield",
-      "lastName": "High School",
-      "email": "info@greenfieldhigh.edu",
-      "phone": "+1-555-123-4567",
-      "address": "123 Greenfield Avenue",
-      "country": "USA",
-      "city": "New York"
+      id: 1,
+      schoolName: 'Greenfield High School',
+      firstName: 'Greenfield',
+      lastName: 'High School',
+      email: 'info@greenfieldhigh.edu',
+      phone: '+1-555-123-4567',
+      address: '123 Greenfield Avenue',
+      country: 'USA',
+      city: 'New York',
     },
     {
-      "id": 2,
-      "schoolName": "Sunrise Elementary School",
-      "firstName": "Sunrise",
-      "lastName": "Elementary School",
-      "email": "contact@sunriseelementary.edu",
-      "phone": "+1-555-987-6543",
-      "address": "456 Sunrise Street",
-      "country": "Canada",
-      "city": "Toronto"
+      id: 2,
+      schoolName: 'Sunrise Elementary School',
+      firstName: 'Sunrise',
+      lastName: 'Elementary School',
+      email: 'contact@sunriseelementary.edu',
+      phone: '+1-555-987-6543',
+      address: '456 Sunrise Street',
+      country: 'Canada',
+      city: 'Toronto',
     },
     {
-      "id": 3,
-      "schoolName": "Riverdale Academy",
-      "firstName": "Riverdale",
-      "lastName": "Academy",
-      "email": "info@riverdaleacademy.edu",
-      "phone": "+44-555-321-0987",
-      "address": "789 Riverdale Lane",
-      "country": "UK",
-      "city": "London"
+      id: 3,
+      schoolName: 'Riverdale Academy',
+      firstName: 'Riverdale',
+      lastName: 'Academy',
+      email: 'info@riverdaleacademy.edu',
+      phone: '+44-555-321-0987',
+      address: '789 Riverdale Lane',
+      country: 'UK',
+      city: 'London',
     },
     {
-      "id": 4,
-      "schoolName": "Lakeside College",
-      "firstName": "Lakeside",
-      "lastName": "College",
-      "email": "contact@lakesidecollege.edu",
-      "phone": "+61-555-654-3210",
-      "address": "101 Lakeside Boulevard",
-      "country": "Australia",
-      "city": "Sydney"
+      id: 4,
+      schoolName: 'Lakeside College',
+      firstName: 'Lakeside',
+      lastName: 'College',
+      email: 'contact@lakesidecollege.edu',
+      phone: '+61-555-654-3210',
+      address: '101 Lakeside Boulevard',
+      country: 'Australia',
+      city: 'Sydney',
     },
     {
-      "id": 5,
-      "schoolName": "Mountainview Institute",
-      "firstName": "Mountainview",
-      "lastName": "Institute",
-      "email": "info@mountainviewinstitute.edu",
-      "phone": "+49-555-789-1234",
-      "address": "202 Mountainview Road",
-      "country": "Germany",
-      "city": "Berlin"
-    }
+      id: 5,
+      schoolName: 'Mountainview Institute',
+      firstName: 'Mountainview',
+      lastName: 'Institute',
+      email: 'info@mountainviewinstitute.edu',
+      phone: '+49-555-789-1234',
+      address: '202 Mountainview Road',
+      country: 'Germany',
+      city: 'Berlin',
+    },
   ]);
 
   const initialValues: Schools = {
@@ -111,12 +114,15 @@ const AddSchool = () => {
     city: '',
   };
 
-  const handleSubmit = (values: Schools, { resetForm }: { resetForm: () => void }) => {
+  const handleSubmit = (
+    values: Schools,
+    { resetForm }: { resetForm: () => void },
+  ) => {
     console.log('Form Submitted with values:', values);
-  
+
     // Generate a new unique ID
     const newSchoolData = {
-      id: generateId(newSchool.map((sch) => sch.id)),
+      id: generateId(newSchool.map(sch => sch.id)),
       schoolName: values.schoolName,
       firstName: values.firstName,
       lastName: values.lastName,
@@ -126,29 +132,26 @@ const AddSchool = () => {
       country: values.country,
       city: values.city,
     };
-  
-    
+
     const storedSchools = JSON.parse(localStorage.getItem('schools') || '[]');
-  
-   
+
     const updatedSchools = [...storedSchools, newSchoolData];
-  
+
     setNewSchool(updatedSchools);
-    
+
     resetForm();
 
     localStorage.setItem('schools', JSON.stringify(updatedSchools));
-  
-    
-  
+
     console.log('New School List:', updatedSchools);
   };
-  
 
   return (
-    <Formik initialValues={initialValues}
-     validationSchema={schoolSchema} 
-     onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={schoolSchema}
+      onSubmit={handleSubmit}
+    >
       {({ isSubmitting }) => (
         <Form>
           <div className='container'>

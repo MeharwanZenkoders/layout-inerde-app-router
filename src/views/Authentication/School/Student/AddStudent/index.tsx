@@ -13,7 +13,7 @@ const studentSchema = Yup.object().shape({
     .email('Invalid email format')
     .matches(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|pk)$/,
-      'Email must end with .com or .pk'
+      'Email must end with .com or .pk',
     )
     .required('Email is required'),
   gender: Yup.string().required('Gender is required'),
@@ -40,7 +40,6 @@ const generateId = (existing: number[]): number => {
 };
 
 const AddStudentView = () => {
-
   const [newStudent, setNewStudent] = useState<Student[]>([
     {
       id: 1,
@@ -117,7 +116,10 @@ const AddStudentView = () => {
     program: '',
   };
 
-  const handleSubmit = (values: Student, { resetForm }: { resetForm: () => void },) => {
+  const handleSubmit = (
+    values: Student,
+    { resetForm }: { resetForm: () => void },
+  ) => {
     console.log('Form Submitted with values:', values);
 
     const newStudentData = {
@@ -130,15 +132,16 @@ const AddStudentView = () => {
       program: values.program,
     };
 
-
     const storedStudent = JSON.parse(localStorage.getItem('students') || '[]');
     const updatedStudent = [...storedStudent, newStudentData];
     setNewStudent(updatedStudent);
 
     resetForm();
-    
-    localStorage.setItem("students", JSON.stringify([...newStudent, newStudentData]));
-    
+
+    localStorage.setItem(
+      'students',
+      JSON.stringify([...newStudent, newStudentData]),
+    );
   };
 
   return (

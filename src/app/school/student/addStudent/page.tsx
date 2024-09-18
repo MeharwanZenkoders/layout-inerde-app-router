@@ -1,12 +1,10 @@
+import AddStudentView from '@/views/Authentication/School/Student/AddStudent';
+import React from 'react';
 
-
-import AddStudentView from '@/views/Authentication/School/Student/AddStudent'
-import React from 'react'
-
-export default async function AddStudentPage () {
+export default async function AddStudentPage() {
   return (
     <div>
       <AddStudentView />
     </div>
-  )
+  );
 }

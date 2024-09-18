@@ -4,7 +4,6 @@ import { SchoolCard } from '@/components/ui/schoolCard';
 import Link from 'next/link';
 import React from 'react';
 
-
 const SchoolView = () => {
   return (
     <div className='container'>
@@ -27,7 +26,7 @@ const SchoolView = () => {
       </div>
 
       <div className='bg-white mt-8'>
-        <SchoolCard  />
+        <SchoolCard />
       </div>
     </div>
   );
@@ -39,7 +38,7 @@ export default SchoolView;
 // import React from 'react';
 
 // const Loading = () => {
-  
+
 //   return (
 //     <div>
 //       <div>

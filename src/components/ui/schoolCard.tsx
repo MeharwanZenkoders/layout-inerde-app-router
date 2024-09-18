@@ -16,20 +16,16 @@ interface Schools {
   city: string;
 }
 
-
 export const SchoolCard = () => {
   const [allSchools, setAllSchools] = useState<Schools[]>([]);
 
-  
   useEffect(() => {
     const storedSchools = localStorage.getItem('schools');
     if (storedSchools) {
-  
       const parsedSchools = JSON.parse(storedSchools);
       setAllSchools(parsedSchools);
     }
   }, []);
-
 
   return (
     <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
@@ -40,18 +36,32 @@ export const SchoolCard = () => {
               <div className='flex items-start gap-4'>
                 <div className='flex items-center justify-center py-6'>
                   <div className='bg-gray-300 border border-gray-300 rounded-lg py-1 px-1'>
-                    <Building height={40} width={40} className='text-green-800' />
+                    <Building
+                      height={40}
+                      width={40}
+                      className='text-green-800'
+                    />
                   </div>
                 </div>
                 <div className='flex flex-col justify-center py-5'>
-                  <div className='text-lg font-semibold'>{school.schoolName}</div>
+                  <div className='text-lg font-semibold'>
+                    {school.schoolName}
+                  </div>
                   <div className='flex items-center text-sm'>
-                    <Users className='text-green-800' height={15} width={15} />
+                    <Users
+                      className='text-green-800'
+                      height={15}
+                      width={15}
+                    />
                     <span className='px-1'>10 Students</span>
                   </div>
                   <div className='flex items-center text-sm'>
-                    <GraduationCap className='text-green-800' height={15} width={15} />
-                    <span className='px-1'>4  Teachers</span>
+                    <GraduationCap
+                      className='text-green-800'
+                      height={15}
+                      width={15}
+                    />
+                    <span className='px-1'>4 Teachers</span>
                   </div>
                 </div>
               </div>
